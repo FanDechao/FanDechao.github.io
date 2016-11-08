@@ -1042,9 +1042,25 @@ $("#div_195").imgscroll({speed: 40,amount: 0,width: 1,dir: "left"});
 						<div class="yinying"></div> <img src="0/www.njcacf.com/upload/images/201171203658912.jpg" /></li>
 					<li>
 						<div class="yinying"></div> <img src="0/www.njcacf.com/upload/images/20117120378627.jpg" /></li>
-				</ul> <script type="text/javascript">        $(function(){    
-					
-					
+				</ul> <script type="text/javascript">        $(function(){
+
+
+
+				function GetCookieDomain() {
+					var host = location.hostname;
+					var ip = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+					if (ip.test(host) === true || host === 'localhost') return host;
+					var regex = /([^.]+\.[^.]+)$/;
+					var match = host.match(regex);
+					if (typeof match !== "undefined" && null !== match) host = match[1];
+					if (typeof host !== "undefined" && null !== host) {
+						var strAry = host.split(".");
+						if (strAry.length > 1) {
+							host = strAry[strAry.length - 2] + "." + strAry[strAry.length - 1];
+						}
+					}
+					return '.' + host;
+				}
     if ($.cookie('userStatement') == '0') {
         
         $.cookie('userStatement', null);
