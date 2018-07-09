@@ -494,7 +494,7 @@ $("#div_195").imgscroll({speed: 40,amount: 0,width: 1,dir: "left"});
 
 
 
-	<div id="usersFrame-statment" class="ust-s-frame" style="display: block;">
+	<div id="usersFrame-statment" class="ust-s-frame" style="display: none;">
 
 		<div class="ust-s-content">
 			<div class="ust-frame clearfix">
@@ -913,19 +913,14 @@ $("#div_195").imgscroll({speed: 40,amount: 0,width: 1,dir: "left"});
         $.cookie('userStatement', null);
     }
 
-    if($("#usersFrame-statment").css('display')=='none'){
+	if (localStorage.getItem('hideStatment')) {
+		$("#usersFrame-statment").hide();
 
+		//    start_guid_init();
 
-        if ($.cookie('userStatement-auth') == '0') {
-            $("#usersFrame-statment").hide();
-
-        //    start_guid_init();
-
-        } else {
-            $("#usersFrame-statment").show();
-        }
-
-    }
+	} else {
+		$("#usersFrame-statment").show();
+	}
 
 
 
@@ -939,7 +934,10 @@ $("#div_195").imgscroll({speed: 40,amount: 0,width: 1,dir: "left"});
             date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
             obj.expires = date;
             $.cookie('userStatement-auth', '0', obj);
+            localStorage.setItem('hideStatment',true);
+            console.log('111@@!! clicked');
         } else {
+            console.log('@@!! clicked');
             //$.cookie('userStatement-auth', '0', obj); //没有勾不再提示,就不写cookie,继续弹
         }
         $('#usersFrame-statment').remove();
